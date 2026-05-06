@@ -1,118 +1,122 @@
-[简体中文](./README.md) | English
+简体中文 | [English](./README.en.md)
 
 <p align="center">
-<img width="620px" alt="hel-logo" src="https://user-images.githubusercontent.com/7334950/186912479-463a6788-41fd-474d-83ed-08314909d70d.png" />
+<img width="620px" alt="hel-logo"  src="https://raw.githubusercontent.com/Tencent/hel/refs/heads/write-doc/doc/static/img/hel-plus.png" />
 </p>
 
-## [Doc](https://tnfe.github.io/hel)
+**hel-micro**, 原生跨端、工具链无关的模块联邦SDK ❤️
 
-**hel-micro**, module federation sdk, build-free, hot-update, toolchain-independent micro-module solution ❤️
+> doc： https://helmicro.com or https://tencent.github.io/hel
 
-see doc: https://tnfe.github.io/hel
+## 特点
 
-## article
+- 原生跨端  
+支撑在**浏览器**和**服务器**双端同时使用
 
-1. [hel-micro Module Federation New Revolution](https://dev.to/fantasticsoul/why-is-hel-micro-a-better-implementation-of-module-federation-21ji)
+- 双模驱动  
+支持以**传统包**和**微模块**包两种模式运行，通过编译参数做切换
 
-2. [Using hel-micro to make remote antd, tdesign-react](https://juejin.cn/post/7150639599499509797)
+- 平台化  
+可部署[helpack](./helpack/README.md)做模块版本管理
 
-## video
+- 工程化  
+提供[hel](./packages/create-hel/README.md)命令行工具，完美适配`pnpm`大仓开发模式
 
-1. [The first video tutorial] [Develop, publish, and use remote js library based on hel-micro](https://www.bilibili.com/video/BV15t4y1u7i5/?vd_source=51bc50bf5f860e0d778c49b00d192cee)
-1. [The second phase of the video tutorial] [Local joint debugging based on the remote js library developed by hel-micro](https://www.bilibili.com/video/BV1Dd4y1y7Wj/?vd_source=51bc50bf5f860e0d778c49b00d192cee)
+- 工具链无关  
+前端微模块可对接`webpack`、`vite`、`parcel`等构建工具，后端微模块可运行于`node`、`bun`、`deno`等运行时
 
-## template
+## 快速开始
 
-Users can refer to [module development tutorial](https://tnfe.github.io/hel/docs/tutorial/helmod-dev), and based on [hel-eco](https://github.com/hel-eco) Various template projects provided can be slightly adjusted to publish various types of hel remote modules
-
-| Example Name/Function | Usage Example | Template Address | Template Description | Hosting Location |
-| --- | --- | --- | --- | --- |
-| Remote ts library | [codesandbox](https://codesandbox.io/s/hel-lodash-zf8jh8) | [remote-lib-ts](https://github.com/hel-eco/hel-tpl- remote-lib) | webpack development and packaging | [unpkg](https://unpkg.com/hel-tpl-remote-lib/) |
-| Remote react js components | [codesandbox](https://codesandbox.io/s/demo-load-remote-react-comp-2bnpl0) | [remote-react-comp](https://github.com/hel -eco/hel-tpl-remote-react-comp) | webpack development and packaging | [unpkg](https://unpkg.com/hel-tpl-remote-react-comps/) |
-| Remote react ts components | [codesandbox](https://codesandbox.io/s/demo-load-remote-react-comp-2bnpl0) | [remote-react-comp-ts](https://github.com /hel-eco/hel-tpl-remote-react-comps) | webpack development and packaging | [unpkg](https://unpkg.com/hel-tpl-remote-react-comps-ts/) |
-| Remote vue2 js component | [codesandbox](https://codesandbox.io/s/demo-load-remote-vue-comp-st0295) | [remote-vue-comp](https://github.com/hel -eco/hel-tpl-remote-vue-comp) | webpack development and packaging | [unpkg](https://unpkg.com/hel-tpl-remote-vue-comps/), [github.io index.html ](https://hel-eco.github.io/hel-tpl-remote-vue-comp/index.html), [unpkg index.html](https://unpkg.com/hel-tpl-remote- vue-comps@1.1.3/hel_dist/index.html) |
-| Remote vue3 ts components | [codesandbox](https://codesandbox.io/s/demo-load-remote-vue3-comp-2fd34s?file=/src/main.js) | [remote-vue3-comps-ts ](https://github.com/hel-eco/hel-tpl-remote-vue3-comps-ts) | vite or webpack development, webpack packaging | [unpkg](https://unpkg.com/hel-tpl -remote-vue3-comps-ts/) |
-
-## Actual combat
-
-The hel remote module released after the transformation based on the template project
-
-| Module Name/Function | Online Demo | Repository Address | Description | Hosting Location |
-| --- | --- | --- | --- | --- |
-| hel-lodash | [codesandbox](https://codesandbox.io/s/hel-lodash-zf8jh8) | [gihub](https://github.com/hel-eco/hel-lodash) | lodash remote package | [unpkg](https://unpkg.com/hel-lodash/) |
-| hel-antd | [codesandbox](https://codesandbox.io/s/hel-demo-use-antd-tjy3ep) | [gihub](https://github.com/hel-eco/hel-antd) | antd remote package | [unpkg](https://unpkg.com/hel-antd/) |
-| hel-tdesign-react | [codesandbox](https://codesandbox.io/s/hel-demo-use-tedesign-nw8bfb) | [gihub](https://github.com/hel-eco/hel- tdesign-react) | tdesign-react remote package | [unpkg](https://unpkg.com/hel-tdesign-react/) |
-
-## [Why hel-micro](https://tnfe.github.io/hel)
-
-Fast access, 0 intrusion, easy to use: ![image](https://user-images.githubusercontent.com/7334950/198016212-a0002896-caf1-4b59-aa32-e8fb09b15f33.png)
-
-Let the module federation technology be upgraded from the build tool plug-in level to the sdk level, with more flexible use and better module circulation (toolchain irrelevant): <img width="1226" alt="image" src="https://user-images.githubusercontent.com/7334950/198015955-1e294f9c-4a6b-4482-8d54-100a5d3bd38d.png" />
-
-### How to use remote modules
-
-Only one npm command is needed to load a remote module, see the example below [online example](https://codesandbox.io/s/hel-lodash-zf8jh8?file=/src/App.js)
-
-- 1 Install `hel-micro`
+全局安装hel命令行工具
 
 ```bash
-npm i hel-micro
+npm i create-hel -g
 ```
 
-- 2 Lazy load remote modules
+### 后端微模块
 
-Example: calling a method of the `hel-lodash` module
+先映射欲提升为微模块的node模块，再启动你的服务
 
 ```ts
-import { preFetchLib } from 'hel-micro';
-async function ran(seed) {
-  const mod = await preFetchLib('hel-lodash'); // The first load triggers the download of the module, and then it will be obtained from the hel-micro cache
-  const num = mod.myUtils.num.random(500);
-  return num;
-}
-```
-
-- 3 Preload remote modules
-
-Example: Calling its module method after statically importing `hel-lodash`
-
-Install `hel-lodash`
-
-```bash
-npm i hel-lodash
-```
-
-Execute the module pull action first
-
-```ts
-import { preFetchLib } from 'hel-micro';
+import { mapAndPreload } from 'hel-micro-node';
 
 async function main() {
-  await preFetchLib('hel-lodash');
-  await import('./loadApp'); // move the entry file backward
+  // 如需使用 node_modules 模块，注释这里的调用即可
+  await mapAndPreload({ '@hel-demo/mono-libs': true });
+  await import('./server');
 }
-
-main().catch(console.error);
 ```
 
-Statically import `hel-micro` in any file associated with the entry file and call the module method
+可通过以下命令行运行后端微模块示例项目
+
+```bash
+hel init demo1 -t node-demo
+cd demo1
+npm i
+npm run start
+```
+
+### 前端微模块
+
+先映射欲提升为微模块的前端模块，再载入你的前端应用
 
 ```ts
-import m from 'hel-lodash';
-console.log(m.myUtils.num.random(500);) // get random number
+import { preFetchLib } from 'hel-micro';
+
+async function start() {
+  // 如需使用 node_modules 模块，注释这里的调用即可
+  await preFetchLib('@hel-demo/mono-libs');
+  await import('./loadApp');
+}
 ```
 
-## [hel-micro](packages/hel-micro)
+webpack alias 配置模块映射关系
 
-Front-end widgetized sdk, based on hel-micro, it can realize cross-project code sharing, module hot update, micro front-end architecture and other functions
+```ts
+  alias: {
+    // 如需使用 node_modules 模块，注释这里的映射即可
+    '@hel-demo/mono-libs': '@hel-demo/mono-libs/hel' ,
+  },
+```
 
-## [hel-micro-react](packages/hel-micro-react)
+### 模块版本管理
 
-React component loading library implemented by hel-micro based api.
+可部署[helpack](./helpack/README.md)做模块版本管理
 
-## 🐚 Who is using
+```bash
+hel init myhel -t helpack
+```
 
-You are welcome to provide your company logo, company name, screenshots, website and other information in this [issue](https://github.com/tnfe/hel/issues/31), and provide other users with some reference information, so that in the future More people are involved in the construction and use of hel-micro.
+![helpack](https://tnfe.gtimg.com/image/f13q7cuzxt_1652895450360.png)
+
+
+### 开发与部署微模块
+
+使用命令行工具初始化专用于开发与部署微模块的工程
+
+```bash
+hel init mymod
+cd mymod
+pnpm i
+# 新建子模块
+pnpm start .create-mod mylib
+# 开发子模块
+pnpm start mylib
+# 构建子模块
+pnpm start mylib build:nbsm
+# 发布子模块
+pnpm --filter mylib publish
+```
+
+更多说明见`hel-mono`[文档](https://github.com/hel-eco/hel-mono)
+
+### 其他
+
+访问旧版[文档](./md/README_OLD.md)
+
+## 🐚 谁在使用
+
+欢迎在此[issue](https://github.com/tnfe/hel/issues/31)里提供你的公司 logo，公司名，截图、站点等信息，提供给其他用户一些参考信息，让未来有更多的人参与到 hel-micro 的建设与使用中。
 
 <table>
   <tr>
@@ -122,8 +126,26 @@ You are welcome to provide your company logo, company name, screenshots, website
         </a>
         <br/>
         <a target="_blank" href="https://console.cloud.tencent.com/wedata/share/overview">
-          <b>Tencent Cloud</b>
+          <b>腾讯云</b>
+        </a> 
+      </td>
+      <td align="center">
+        <a href="https://www.tencentmusic.com" target="_blank">
+          <img width="140px;" src="https://user-images.githubusercontent.com/7334950/253788999-40ca0ea2-e73d-4e7b-b932-162826d5bf97.png"></img>
         </a>
+        <br/>
+        <a target="_blank" href="https://www.tencentmusic.com">
+          <b>腾讯音乐</b>
+        </a> 
+      </td>
+      <td align="center">
+        <a href="https://docs.qq.com" target="_blank">
+          <img width="140px;" src="https://user-images.githubusercontent.com/7334950/253789181-c4065149-304b-4b1e-bb93-23e1d849f45f.png"></img>
+        </a>
+        <br/>
+        <a target="_blank" href="https://docs.qq.com">
+          <b>腾讯文档</b>
+        </a> 
       </td>
       <td align="center">
          <a href="https://news.qq.com/" target="_blank">
@@ -131,17 +153,26 @@ You are welcome to provide your company logo, company name, screenshots, website
         </a>
         <br/>
         <a target="_blank" href="https://news.qq.com/">
-          <b>Tencent News</b>
+          <b>腾讯新闻</b>
+        </a> 
+      </td>
+      <td align="center">
+         <a href="https://gu.qq.com/resource/products/portfolio/m.htm" target="_blank">
+          <img width="140px;" src="https://user-images.githubusercontent.com/7334950/253789148-c42ae516-991f-44df-a366-9b295c306b98.png"></img>
         </a>
+        <br/>
+        <a target="_blank" href="https://gu.qq.com/resource/products/portfolio/m.htm">
+          <b>腾讯自选股</b>
+        </a> 
       </td>
     </tr>
 </table>
 
-## 📦Learn more
+## 📦 了解更多
 
-Welcome to join the group to learn more. Since the WeChat discussion group is full of 200 people, you need to add the author's WeChat account or QQ group account, and then invite you to the `hel-micro` discussion group (remember to note hel when adding a sign)
+欢迎入群了解更多，由于微信讨论群号 200 人已满，需加作者微信号或 qq 群号，再邀请你如`hel-micro`讨论群（加号时记得备注 hel 哦）
 
-<img width="896" alt="image" src="https://user-images.githubusercontent.com/7334950/196099777-f0cd3b9b-bcd5-4a88-9d15-62da4a62fe6e.png" />
+<img width="896" alt="image" src="https://user-images.githubusercontent.com/7334950/196099777-f0cd3b9b-bcd5-4a88-9d15-62da4a62fe6e.png">
 
 ## 👅License
 

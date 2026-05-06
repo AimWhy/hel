@@ -7,13 +7,16 @@ const { prepareHelEntry } = require('./entry');
 const { getMonoDevData, getPkgMonoDepData, getPkgMonoDepDataDict } = require('./dev-data');
 const { executeStart, executeBuild, executeStartDeps, buildSrvModToHelDist } = require('./exec');
 const util = require('./util');
-const { helMonoLogAllTmp } = require('./util/log');
 const { lastNItem } = require('./util/arr');
 const { runAppAction, createApp } = require('./util/cmd');
 const { getDirData } = require('./util/cwd');
 const { getHost, getHelMonoHost } = require('./util/devHost');
+const { getFileInfoList, getFileJson } = require('./util/file');
 const { getRawMonoJson } = require('./util/monoJson');
 const { getMonoAppPkgJsonByCwd, isEXProject } = require('./util/monoPkg');
+const { getNmPkgJsonByPath } = require('./util/nmPkg');
+const { helMonoLogAllTmp } = require('./util/log');
+const { rewriteFileLine } = require('./util/rewrite');
 
 /**
  * 约定内部临时打印用 mlog(...)，提交时搜 mlog 删除即可，
@@ -107,6 +110,10 @@ const monoUtil = {
   isHelAllBuild: util.isHelAllBuild,
   isHelExternalBuild: util.isHelExternalBuild,
   hint: util.hint,
+  getNmPkgJsonByPath,
+  getFileInfoList,
+  getFileJson,
+  rewriteFileLine,
 };
 
 module.exports = {

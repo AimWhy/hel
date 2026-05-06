@@ -50,13 +50,15 @@ export function getVersionTag(versionIndex: string) {
   return versionIndex;
 }
 
+/**
+ * 按原来的语义，query.version 指的是数据库里的 sub_app_version 即可做索引的值，
+ * 支持 scope 逻辑后，需要将可能在 params 参数里的数据转移到 query 里且需要保持原来的语义，避免底层逻辑做调整，
+ * 注：赋值 params.appName 是为了适配 appPage.loadSubApp 逻辑
+ */
 export function assignNameAndVerToQuery(ctx: ICuteExpressCtx) {
   const { params, query } = ctx.req;
   const { scope, versionIndex } = params;
   const queryVer = query.version || query.ver || '';
-  let name = '';
-  let noScopeName = '';
-  let versionTag = '';
 
   // 命中了 meta/:versionIndex 路由
   if (!scope) {
@@ -65,21 +67,21 @@ export function assignNameAndVerToQuery(ctx: ICuteExpressCtx) {
     if (ymdhmsStr.length === 14) {
       query.name = nameAsPrefix;
       query.version = versionIndex;
+      params.appName = nameAsPrefix;
       return;
     }
 
-    [name, versionTag = ''] = versionIndex.split('@');
+    const [name, versionTag = ''] = versionIndex.split('@');
     query.name = name;
-    noScopeName = name;
-  } else {
-    // 命中了 meta/:scope/:versionIndex 路由
-    [name, versionTag = ''] = versionIndex.split('@');
-    query.name = `${scope}/${name}`;
-    noScopeName = name;
+    query.version = versionTag ? versionIndex : queryVer;
+    params.appName = name;
+    return;
   }
 
-  // @ 后面的版本号优先级高于 search 参数上的
-  query.version = versionTag ? versionIndex : queryVer;
-  // 适配 appPage.loadSubApp
-  params.appName = noScopeName;
+  // 命中了 meta/:scope/:versionIndex 路由
+  // 注：支持 scope 后新数据 versionIndex 全部是 {name}@{ver} 格式，故
+  const [name, versionTag = ''] = versionIndex.split('@');
+  query.name = `${scope}/${name}`;
+  query.version = versionTag ? `${scope}/${versionIndex}` : queryVer;
+  params.appName = name;
 }

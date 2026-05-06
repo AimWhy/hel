@@ -1,5 +1,8 @@
+/** @typedef {import('../types').ICWDAppData} ICWDAppData */
 const fs = require('fs');
 const path = require('path');
+const { baseUtils } = require('hel-dev-utils-base');
+const jsonc = require('jsonc-parser');
 const { getContentLines } = require('./xplat');
 
 function cpSync(fromDir, toDir) {
@@ -46,27 +49,94 @@ function getDirInfoList(parentDirPath) {
 }
 
 /**
- * 此方法仅获取第一层子文件列表
+ * 不透传 options 时，此方法仅获取第一层子文件、文件夹列表
  * @returns {{name: string, path: string, isDirectory: boolean}[]}
  */
-function getFileInfoList(parentDirPath) {
+function getFileInfoList(parentDirPath, options) {
+  const { allLevel, getType = 'all' } = options || {};
   const dirInfoList = [];
-  if (!fs.existsSync(parentDirPath)) {
-    return dirInfoList;
+  const pushList = (list, item) => {
+    const { isDirectory } = item;
+    if (getType === 'all') {
+      return list.push(item);
+    }
+    // regular: non-directory file
+    if (getType === 'regular' && !isDirectory) {
+      return list.push(item);
+    }
+    // dir: directory file
+    if (getType === 'dir' && isDirectory) {
+      return list.push(item);
+    }
+  };
+
+  const innerGet = (list, dirPath) => {
+    if (!fs.existsSync(dirPath)) {
+      return;
+    }
+
+    const names = fs.readdirSync(dirPath);
+    names.forEach((name) => {
+      const mayDirPath = path.join(dirPath, name);
+      const stats = fs.statSync(mayDirPath);
+      const isDirectory = stats.isDirectory();
+      pushList(list, { name, path: mayDirPath, isDirectory });
+      if (allLevel && isDirectory) {
+        innerGet(list, mayDirPath);
+      }
+    });
+  };
+  innerGet(dirInfoList, parentDirPath);
+
+  return dirInfoList;
+}
+
+function resolveAppRelPath(/** @type {ICWDAppData} */ appData, relPath, isDir) {
+  const { monoRoot, belongTo, appDir } = appData;
+  const relPathVar = baseUtils.slash.start(relPath);
+  const filePath = path.join(monoRoot, `./${belongTo}/${appDir}${relPathVar}`);
+  if (isDir && !fs.existsSync(filePath)) {
+    fs.mkdirSync(filePath);
   }
 
-  const names = fs.readdirSync(parentDirPath);
-  names.forEach((name) => {
-    const mayDirPath = path.join(parentDirPath, name);
-    const stats = fs.statSync(mayDirPath);
-    dirInfoList.push({ name, path: mayDirPath, isDirectory: stats.isDirectory() });
-  });
-  return dirInfoList;
+  return filePath;
+}
+
+function getFileJson(standardJsonFilePath, allowNull) {
+  try {
+    const str = fs.readFileSync(standardJsonFilePath, { encoding: 'utf-8' });
+    const json = JSON.parse(str);
+    return json;
+  } catch (err) {
+    if (!allowNull) {
+      throw err;
+    }
+    return null;
+  }
+}
+
+function getJsoncFileJsonByDR(dirPath, relPath) {
+  const filePath = path.join(dirPath, relPath);
+  const json = getJsoncFileJson(filePath);
+  return {
+    json,
+    write: (input) => fs.writeFileSync(filePath, JSON.stringify(input || json, null, 2)),
+  };
+}
+
+function getJsoncFileJson(filePath) {
+  const content = fs.readFileSync(filePath, { encoding: 'utf8' });
+  const json = jsonc.parse(content);
+  return json;
 }
 
 module.exports = {
   getFileContentLines,
   getDirInfoList,
   getFileInfoList,
+  getFileJson,
+  getJsoncFileJson,
+  getJsoncFileJsonByDR,
+  resolveAppRelPath,
   cpSync,
 };

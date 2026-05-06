@@ -34,7 +34,8 @@ export interface IHelMonoModBase {
    */
   htmlPath?: string;
   /**
-   * 此配置项仅对 ex 项目有效，表示使用自定义的依赖替代自动推导的依赖
+   * 此配置项仅对 ex 项目有效，表示使用自定义的依赖替代自动推导的依赖，
+   * 注意：exProjDeps 的优先级比ex项目的 package.json 的 hel.isFixed 高，但没有其灵活
    */
   exProjDeps?: Record<PkgName, string>;  /**
    * 如宿主没提供全局模块且当前子模块也未打包某些 peer 依赖到 hel 产物里时，
@@ -201,6 +202,12 @@ export interface IHelMonoJsonBase extends IExConf {
   appsDirs?: string[];
   /** default: ['packages'], 放置子模块的目录名列表 */
   subModDirs?: string[];
+  /**
+   * default: 'dev'
+   * hel-mono 大仓 dev 目录名称，内部会找到其 root-scripts/executeStart 脚本执行相关命令，当调整了名称和层级时，需重新配置此项
+   * 可更换新名称，例如 'my-dev'，可配置为多层路径，例如 'my-dir/dev'，可配置绝对路径，例如 '/usr/my/path/to/dev'
+   */
+  devDir?: string;
   /**
    * 大仓全局使用的基础外部资源，用户可以按需重写此配置，改写后 dev/public/index.html
    * 里的类似 id="BASE_EX" 的资源链接也需要替换

@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const { getConfig } = require('../config');
-const { TEMPLATE_REACT_MONO } = require('../consts');
+const { TPL_REACT_MONO, TPL_NODE_DEMO, TPL_HELPACK } = require('../consts');
 const { getIsDebug } = require('./debug');
 const { getDepPath } = require('./dep');
 const { logPurple, logError, logTipLine, logTip, logDebug } = require('./log');
@@ -20,18 +20,24 @@ function logDepPath() {
 }
 
 function logCreateSuccess({ projectName, dirPath, template }) {
-  console.log(chalk.green(`\n✅ Project of hel-mono [${projectName}] created on ${chalk.bold(dirPath)}`));
-  let devTip = `\nnext:\n  cd ${projectName}\n  pnpm install\n  pnpm start`;
+  if (TPL_REACT_MONO === template) {
+    console.log(chalk.green(`\n✅ Project of hel-mono [${projectName}] created on ${chalk.bold(dirPath)}`));
+    let devTip = `\nNext:\n  cd ${projectName}\n  pnpm install\n  pnpm start`;
+    console.log(chalk.cyan(devTip));
+  }
 
-  if (TEMPLATE_REACT_MONO === template) {
-    devTip += `\n\ndev hint:\n  pnpm start hub (start apps/hub with legacy mode)`;
-    devTip += `\n  pnpm start hub:hel (start apps/hub with micro-module mode)`;
-    devTip += `\n  pnpm start .test hub (create react lib to packages dir)`;
-    devTip += `\n  pnpm start .build hub (build apps/hub with legacy mode)`;
-    devTip += `\n  pnpm start .build hub:hel (build apps/hub with micro-module mode)`;
-    devTip += `\n  pnpm start .create <some-app> (create an app to apps dir)`;
-    devTip += `\n  pnpm start .create-mod <some-lib> (create lib to packages dir)`;
-    devTip += `\n  pnpm start .create-mod <some-lib> -t react-lib (create react lib to packages dir)`;
+  if (TPL_NODE_DEMO === template) {
+    console.log(chalk.green(`\n✅ Project of hel-micro-node [${projectName}] created on ${chalk.bold(dirPath)}`));
+    let devTip = `\nNext:\n  cd ${projectName}\n  npm install\n  npm start\n  visit http://localhost:3000 and http://localhost:3000/update`;
+    console.log(chalk.cyan(devTip));
+  }
+
+  if (TPL_HELPACK === template) {
+    console.log(chalk.green(`\n✅ Project of helpack [${projectName}] created on ${chalk.bold(dirPath)}`));
+    let devTip = `\nNext:\n  cd ${projectName}\n  pnpm install\n  pnpm run build`;
+    devTip += `\n  pnpm run server (start helpack server, visit http://localhost:7777)`;
+    devTip += `\n  pnpm run usern (start hel-micro browser user, visit http://localhost:7776)`;
+    devTip += `\n  pnpm run userb (start hel-micro node user, visit http://localhost:3600)`;
     console.log(chalk.cyan(devTip));
   }
 }
