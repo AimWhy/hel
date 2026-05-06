@@ -138,7 +138,7 @@ if (isSimpleServer()) {
   post('/api/v1/app/version/getSubAppVersionListByVers', appVersionCtrl.getSubAppVersionListByVers);
   post('/api/v1/app/version/resetVerCache', appVersionCtrl.resetVerCache);
 
-  // devop平台插件使用的api
+  // devops 平台插件使用的api
   get('/api/openApi/plugin/getAppByName', plugin.getAppByName);
   post('/api/openApi/plugin/getAppByNameAndClass', plugin.getAppByNameAndClass);
   get('/api/openApi/plugin/getCos', plugin.getCos);
