@@ -2,7 +2,6 @@ import * as rainbowConf from 'at/configs/rainbowConf';
 import { models } from 'at/models';
 import type { ICuteExpressCtx, TController } from 'at/types';
 import { ISubAppUpdate } from 'at/types/domain';
-import { checkTimestamp } from 'at/utils/time-check';
 import { checkAppName } from 'controllers/share/app';
 import { lockLogic } from 'controllers/share/lock';
 import { checkQueryNonce } from 'controllers/share/reqGuard';
