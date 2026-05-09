@@ -37,8 +37,6 @@ get('/api/helper/allowApps', helperCtrl.allowApps);
 get('/api/helper/allowAppsV2', helperCtrl.allowAppsV2);
 get('/api/helper/runningLogs', helperCtrl.runningLogs);
 get('/api/helper/getStat', helperCtrl.getStat);
-get('/api/helper/seeLocalCache', helperCtrl.seeLocalCache);
-get('/api/helper/seeRemoteCache', helperCtrl.seeRemoteCache);
 
 if (isSimpleServer()) {
   // ****** 定义服务于外网的接口 ******
