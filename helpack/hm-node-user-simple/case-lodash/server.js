@@ -16,7 +16,7 @@ function sendHello(res) {
     omittedStr = JSON.stringify(omitted);
   } catch (err) {
     // main2 or main3 will cause omit to be undefined
-    omittedStr = 'omit is not a function'
+    omittedStr = 'omit is not a function';
   }
   send(res, 200, `Hello, hel-micro-node, uniq: ${result}, omit: ${omittedStr}\n`);
 }

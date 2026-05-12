@@ -33,7 +33,9 @@ function handleJsCode() {
   });
 
   newContent.unshift('/** Welcome to star hel-micro git https://github.com/Tencent/hel */\n');
-  newContent.unshift(`/** Code compiled at ${new Date().toLocaleString()}, contact Fantasticsoul via QQ: 123456789 if you are interested in hel-micro */`);
+  newContent.unshift(
+    `/** Code compiled at ${new Date().toLocaleString()}, contact Fantasticsoul via QQ: 123456789 if you are interested in hel-micro */`,
+  );
 
   const newCode = newContent.join(os.EOL);
   fs.writeFileSync(indexFile, newCode);

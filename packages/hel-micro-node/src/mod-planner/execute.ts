@@ -4,7 +4,7 @@ import { getMappedModFetchOptions, isModMapped } from '../context/facade';
 import { getGlobalConfig } from '../context/global-config';
 import { triggerHook } from '../context/hooks';
 import { getSdkCtx } from '../context/index';
-import { importNodeModByPath, importNodeModByMod } from '../mod-node';
+import { importNodeModByMod, importNodeModByPath } from '../mod-node';
 import { mapNodeModsManager } from '../server-mod/map-node-mods';
 import { fetchModInfo } from '../server-mod/mod-meta';
 import { PresetData, presetDataMgr } from './preset-data';

@@ -37,7 +37,15 @@ import { maySetToJestMock } from '../test-util';
 import { makeMeta } from './fake-meta';
 import { delFileOrDir } from './file-helper';
 import { mapNodeModsManager } from './map-node-mods';
-import { getCustomModIns, getDiskModIns, getDiskModInsByInitPath, getModInsByMod, getModByPath, getWebModIns, prepareWebModFiles } from './mod-ins';
+import {
+  getCustomModIns,
+  getDiskModIns,
+  getDiskModInsByInitPath,
+  getModByPath,
+  getModInsByMod,
+  getWebModIns,
+  prepareWebModFiles,
+} from './mod-ins';
 import { getEnsuredIMBMOptions, getHelModFilePath, getModProxyHelpData, mayInjectApiUrl } from './mod-manager-helper';
 import { fetchModMeta } from './mod-meta';
 import { extractNameData } from './mod-name';

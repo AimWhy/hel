@@ -1,8 +1,8 @@
 import * as fs from 'fs';
-import { INDEX_JS, MOD_INIT_VER, FALLBACK_MOD_VER } from '../base/mod-consts';
-import { isModuleLike } from '../base/util';
+import { FALLBACK_MOD_VER, INDEX_JS, MOD_INIT_VER } from '../base/mod-consts';
 import { getDirFileList, getModPathData, resolveNodeModPath } from '../base/path-helper';
 import type { IModIns, IWebFileInfo, OnFilesReady, OnFilesReadySync, PrepareFiles, PrepareFilesSync } from '../base/types';
+import { isModuleLike } from '../base/util';
 import { downloadModFiles, getIsFilesReusable, getPrepareFilesParams } from './file-helper';
 import { createLockFile, getLockFilePath, isLockFileValid, waitLockFileDeleted } from './lock-file';
 import { safeUnlinkFile } from './util';

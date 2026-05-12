@@ -4,7 +4,7 @@ const myLodashBetter = require('./my-lodash-better');
 
 async function main() {
   await mapAndPreload({
-    'lodash': {
+    lodash: {
       fallback: {
         force: true,
         path: 'lodash',
@@ -21,7 +21,7 @@ async function main() {
 
 async function main2() {
   await mapAndPreload({
-    'lodash': {
+    lodash: {
       fallback: {
         force: true,
         path: path.join(__dirname, './my-lodash.js'),
@@ -33,7 +33,7 @@ async function main2() {
 
 async function main3() {
   await mapAndPreload({
-    'lodash': {
+    lodash: {
       fallback: {
         force: true,
         mod: myLodashBetter,

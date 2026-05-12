@@ -139,7 +139,8 @@ class MapNodeModsManager {
 
   public isFallbackModExist(nodeModName: PkgName) {
     const { fallback } = this.getNodeModData(nodeModName);
-    if (fallback.mod
+    if (
+      fallback.mod
       || getModByPath(fallback.path, { allowNull: true, override: fallback.pathModOverride })
       || resolveNodeModPath(nodeModName, true)
     ) {
