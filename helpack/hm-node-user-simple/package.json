@@ -1,6 +1,7 @@
 {
   "name": "hm-node-user-simple",
   "version": "1.0.0",
+  "description": "showcase for hel-micro-node, simple user case with node http module",
   "scripts": {
     "start": "node ./case-mod-ver/index",
     "start2": "node ./case/index",
