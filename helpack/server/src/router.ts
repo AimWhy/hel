@@ -172,8 +172,8 @@ if (isSimpleServer()) {
 
   /**
    * 此处不能通过 * 去让剩下未匹配上的路由加载hel首页
-   * 因为这样的话，假设用户 访问 /api，在 at/core/handleAllRequest 里当成api路由了
-   * 然后会重写 Content-Type 值为 applicatin/json
+   * 因为这样的话，假设用户访问 /api，在 at/core/handleAllRequest 里当成api路由了
+   * 然后会重写 Content-Type 值为 application/json
    * 接着执行完 homeCtrl 返回的页面就是原始的字符串了
    *
    * homeCtrl 的执行时机已直接提前到 at/core/handleAllRequest 里面
